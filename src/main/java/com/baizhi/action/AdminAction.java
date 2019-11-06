@@ -1,4 +1,4 @@
-package com.baizhi.action;
+ï»¿package com.baizhi.action;
 
 import com.baizhi.entity.Admin;
 import com.baizhi.service.AdminService;
@@ -8,7 +8,7 @@ public class AdminAction {
 	private Admin admin;
 
 	
-//Ô¶³ÌÁ¬½Ó
+	//ç¼–å†™AdminAction
 
 	public AdminService getAdminService() {
 		return adminService;

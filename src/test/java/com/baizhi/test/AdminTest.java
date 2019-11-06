@@ -13,6 +13,8 @@ public class AdminTest {
 		
 		//在页面的修改，在本地查看
 		
+		//jijiuji
+		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 		AdminDao adminDao=(AdminDao) ac.getBean("adminDao");
 		adminDao.addAdmin(new Admin("1","lmm","李喵喵","123123","男"));

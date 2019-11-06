@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+    <package name="admin" extends="struts-default" namespace="/admin">
+        <action name="register" class="adminAction" method="register">
+            <result name="registerSuccess">/login.jsp</result>
+        </action>
+        <action name="login" class="adminAction" method="login">
+            <result name="loginSuccess" type="redirectAction">
+                <param name="namespace">/dep</param>
+                <param name="actionName">selectAllDep</param>
+            </result>
+            <result name="loginError">/login.jsp</result>
+        </action>
+
+    </package>
+
+    <package name="dep" extends="struts-default" namespace="/dep">
+        <action name="selectAllDep" class="departmentAction" method="selectAllDep">
+            <result name="showDepSuccess">/departments.jsp</result>
+        </action>
+        <action name="addDep" class="departmentAction" method="addDep">
+            <result name="addDepSuccess" type="redirectAction">selectAllDep</result>
+        </action>
+        <action name="selectDep" class="departmentAction" method="selectDep">
+            <result name="selectDepSuccess">/updateDepartment.jsp</result>
+        </action>
+        <action name="updateDep" class="departmentAction" method="updateDep">
+            <result name="updateDepSuccess" type="redirectAction">selectAllDep</result>
+        </action>
+    </package>
+    <package name="emp" extends="struts-default" namespace="/emp">
+        <action name="selectDepname" class="employeeAction" method="selectDepname">
+        </action>
+        <action name="addEmp" class="employeeAction" method="addEmp">
+            <result name="addEmpSuccess" type="redirectAction">
+                <param name="namespace">/dep</param>
+                <param name="actionName">selectAllDep</param>
+            </result>
+        </action>
+        <action name="selectAllEmp" class="employeeAction" method="selectAllEmp">
+            <result name="selectAllEmpSuccess">/emplist.jsp</result>
+        </action>
+        <action name="deleteEmp" class="employeeAction" method="deleteEmp">
+            <result name="deleteEmpSuccess" type="redirectAction">selectAllEmp</result>
+        </action>
+        
+        <action name="selestOne" class="employeeAction" method="selestOne">
+            <result name="selestOneSuccess">/updateEmp.jsp</result>
+        </action>
+        <action name="updateEmp" class="employeeAction" method="updateEmp">
+            <result name="updateEmpSuccess" type="redirectAction">selectAllEmp</result>
+        </action>
+
+    </package>
+</struts>

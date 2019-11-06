@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.DepartmentDao">
+    <select id="selectAllDep" resultType="Department">
+        select * from t_department
+    </select>
+    <insert id="addDep">
+        insert into t_department (id,depnum,depname) values (#{id},#{depnum},#{depname})
+    </insert>
+    <select id="selectDep" resultType="Department">
+        select * from t_department  where id=#{id}
+    </select>
+    <update id="updateDep">
+        update t_department
+        <set>
+            <if test="depnum!=null">
+                depnum=#{depnum},
+            </if>
+            <if test="depname!=null">
+                depname=#{depname},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+</mapper>

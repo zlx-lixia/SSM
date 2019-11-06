@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.EmployeeDao">
+
+    <!--表连接-->
+    <resultMap id="emp1" type="Employee">
+        <id property="id" column="eid"></id>
+        <result property="empname" column="empname"></result>
+        <result property="salary" column="salary"></result>
+        <result property="age" column="age"></result>
+        <result property="depid" column="depid"></result>
+        <association property="dep" javaType="Department">
+            <id property="id" column="did"></id>
+            <result property="depnum" column="depnum"></result>
+            <result property="depname" column="depname"></result>
+        </association>
+    </resultMap>
+
+
+    <insert id="addEmp">
+        insert into t_employee (id,empname,salary,age,depid) values (#{id},#{empname},#{salary},#{age},#{depid})
+    </insert>
+    <select id="selectAllEmp" resultMap="emp1">
+        select e.id eid,e.empname,e.salary,e.age,e.depid,d.id did,d.depnum,d.depname from t_employee e
+          left join t_department d
+          on e.depid=d.id
+          where depid=#{depid}
+    </select>
+    <delete id="deleteEmp">
+        delete from t_employee where id=#{id}
+    </delete>
+    <select id="selectOne" resultType="Employee">
+        select * from t_employee where id=#{id}
+    </select>
+    <update id="updateEmp">
+        update t_employee
+        <set>
+            <if test="empname!=null">
+                empname=#{empname},
+            </if>
+            <if test="salary!=null">
+                salary=#{salary},
+            </if>
+            <if test="age!=null">
+                age=#{age},
+            </if>
+            <if test="depid!=null">
+                depid=#{depid},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>
